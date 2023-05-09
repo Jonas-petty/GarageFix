@@ -4,11 +4,13 @@ import com.project.CostumerSystem.model.Costumer;
 import com.project.CostumerSystem.repository.CostumerRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController("costumer")
+@RestController
+@RequestMapping("costumer")
 @AllArgsConstructor
 public class CostumerController {
 
