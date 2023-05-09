@@ -1,6 +1,6 @@
 package com.project.CostumerSystem.controller;
 
-import com.project.CostumerSystem.DTO.ServiceDTO;
+import com.project.CostumerSystem.DTO.ServiceResponseDTO;
 import com.project.CostumerSystem.repository.ServiceRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +17,7 @@ public class ServiceController {
     private final ServiceRepository serviceRepository;
 
     @GetMapping
-    public List<ServiceDTO> getServices() {
-        return serviceRepository.findAll().stream().map(ServiceDTO::new).toList();
+    public List<ServiceResponseDTO> getServices() {
+        return serviceRepository.findAll().stream().map(ServiceResponseDTO::new).toList();
     }
 }
