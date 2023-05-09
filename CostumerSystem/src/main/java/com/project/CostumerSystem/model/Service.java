@@ -1,12 +1,19 @@
 package com.project.CostumerSystem.model;
 
+import com.project.CostumerSystem.DTO.ServiceRequestDTO;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(of = "id")
 public class Service {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,4 +26,10 @@ public class Service {
 
     @Column(nullable = false)
     private BigDecimal price;
+
+    public Service(ServiceRequestDTO data) {
+        this.name = data.name();
+        this.description = data.description();
+        this.price = data.price();
+    }
 }
