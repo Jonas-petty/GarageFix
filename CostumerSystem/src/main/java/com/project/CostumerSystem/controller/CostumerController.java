@@ -1,7 +1,9 @@
 package com.project.CostumerSystem.controller;
 
+import com.project.CostumerSystem.DTO.CostumerResponseDTO;
 import com.project.CostumerSystem.entity.Costumer;
 import com.project.CostumerSystem.repository.CostumerRepository;
+import com.project.CostumerSystem.service.CostumerService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,11 +16,11 @@ import java.util.List;
 @AllArgsConstructor
 public class CostumerController {
 
-    private final CostumerRepository costumerRepository;
+    private final CostumerService costumerService;
 
     @GetMapping
-    public List<Costumer> getCostumers() {
-        return costumerRepository.findAll();
+    public List<CostumerResponseDTO> getCostumers() {
+        return costumerService.findAll();
     }
 
 }
