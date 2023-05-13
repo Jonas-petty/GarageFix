@@ -1,4 +1,4 @@
-package com.project.CostumerSystem.model;
+package com.project.CostumerSystem.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -13,8 +13,8 @@ public class Costumer {
     @Column(length = 200, nullable = false)
     private String name;
 
-    @Column(name = "mobile_number", length = 11, nullable = false)
-    private String mobileNumber;
+    @Column(length = 11, nullable = false)
+    private String phoneNumber;
 
     @ManyToOne
     @JoinColumn(name = "service_id")

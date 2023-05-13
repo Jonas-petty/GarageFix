@@ -1,4 +1,4 @@
-package com.project.CostumerSystem.model;
+package com.project.CostumerSystem.entity;
 
 import com.project.CostumerSystem.DTO.ServiceRequestDTO;
 import jakarta.persistence.*;

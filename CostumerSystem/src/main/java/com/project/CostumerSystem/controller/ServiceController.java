@@ -2,7 +2,7 @@ package com.project.CostumerSystem.controller;
 
 import com.project.CostumerSystem.DTO.ServiceRequestDTO;
 import com.project.CostumerSystem.DTO.ServiceResponseDTO;
-import com.project.CostumerSystem.model.Service;
+import com.project.CostumerSystem.entity.Service;
 import com.project.CostumerSystem.repository.ServiceRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;

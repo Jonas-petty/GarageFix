@@ -1,6 +1,6 @@
 package com.project.CostumerSystem.DTO;
 
-import com.project.CostumerSystem.model.Service;
+import com.project.CostumerSystem.entity.Service;
 
 import java.math.BigDecimal;
 
