@@ -8,6 +8,7 @@ import com.jonas.project.garagefix.repository.ClientRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -19,10 +20,12 @@ public class ClientController {
     private ClientRepository repository;
 
     @PostMapping
+    @Transactional
     public ResponseEntity create(@RequestBody @Valid NewClientData newClient, UriComponentsBuilder uriBuilder) {
         var client = new Client(newClient);
 
         repository.save(client);
+        repository.flush();
 
         var uri = uriBuilder.path("/client/{id}").buildAndExpand(client.getId()).toUri();
 

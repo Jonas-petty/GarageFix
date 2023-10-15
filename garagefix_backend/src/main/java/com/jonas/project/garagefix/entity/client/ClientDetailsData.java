@@ -7,7 +7,6 @@ public record ClientDetailsData(
         UUID id,
         String nome,
         String phoneNumber,
-
         LocalDateTime createdAt
 ) {
     public ClientDetailsData(Client client) {
