@@ -1,4 +1,4 @@
-package com.jonas.project.garagefix.entity.product;
+package com.jonas.project.garagefix.entity.repair;
 
 public enum ProductKind {
     TELEVISAO,
