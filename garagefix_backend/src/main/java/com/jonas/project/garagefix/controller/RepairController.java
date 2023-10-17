@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
-@RequestMapping("/service")
+@RequestMapping("/repair")
 public class RepairController {
 
     @Autowired
@@ -32,7 +32,7 @@ public class RepairController {
        var cratedRepairDetails = creator.create(newRepair);
         repository.flush();
 
-        var uri = uriBuilder.path("/service/{id}").buildAndExpand(cratedRepairDetails.id()).toUri();
+        var uri = uriBuilder.path("/repair/{id}").buildAndExpand(cratedRepairDetails.id()).toUri();
 
         return ResponseEntity.created(uri).body(cratedRepairDetails);
     }
