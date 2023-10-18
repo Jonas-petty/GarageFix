@@ -4,6 +4,7 @@ import com.jonas.project.garagefix.entity.client.Client;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
@@ -12,6 +13,7 @@ import java.util.UUID;
 
 @Data
 @Entity
+@NoArgsConstructor
 @AllArgsConstructor
 public class Repair {
 
@@ -29,12 +31,4 @@ public class Repair {
 
     @CreationTimestamp
     private LocalDateTime createdAt;
-
-//    public Repair(NewRepairData newRepairData) {
-//        this.isActive = true;
-//        this.clientId = newRepairData.clientId();
-//        this.productKind = newRepairData.productKind();
-//        this.problemDescription = newRepairData.problemDescription();
-//        this.price = newRepairData.price();
-//    }
 }
