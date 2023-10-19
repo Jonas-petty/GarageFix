@@ -29,12 +29,12 @@ public class RepairController {
     @PostMapping
     @Transactional
     public ResponseEntity create(@RequestBody @Valid NewRepairData newRepair, UriComponentsBuilder uriBuilder) {
-       var cratedRepairDetails = creator.create(newRepair);
+       var createdRepairDetails = creator.create(newRepair);
         repository.flush();
 
-        var uri = uriBuilder.path("/repair/{id}").buildAndExpand(cratedRepairDetails.id()).toUri();
+        var uri = uriBuilder.path("/repair/{id}").buildAndExpand(createdRepairDetails.id()).toUri();
 
-        return ResponseEntity.created(uri).body(cratedRepairDetails);
+        return ResponseEntity.created(uri).body(createdRepairDetails);
     }
 
     @GetMapping

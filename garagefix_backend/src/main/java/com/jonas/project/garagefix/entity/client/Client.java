@@ -33,4 +33,14 @@ public class Client {
         this.name = newClient.name();
         this.phoneNumber = newClient.phoneNumber();
     }
+
+    public void updateData(ClientUpdateData data) {
+        if (data.name() != null) {
+            this.name = data.name();
+        }
+
+        if (data.phoneNumber() != null) {
+            this.phoneNumber = data.phoneNumber();
+        }
+    }
 }
