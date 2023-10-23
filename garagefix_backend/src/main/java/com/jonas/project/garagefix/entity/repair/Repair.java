@@ -1,11 +1,13 @@
 package com.jonas.project.garagefix.entity.repair;
 
 import com.jonas.project.garagefix.entity.client.Client;
+import com.jonas.project.garagefix.repository.ClientRepository;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -22,6 +24,7 @@ public class Repair {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Client client;
+
     @Enumerated(EnumType.STRING)
     private ProductKind productKind;
     private String problemDescription;

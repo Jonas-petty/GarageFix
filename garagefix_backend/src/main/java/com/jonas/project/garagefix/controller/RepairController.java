@@ -1,13 +1,9 @@
 package com.jonas.project.garagefix.controller;
 
-import com.jonas.project.garagefix.entity.repair.NewRepairData;
+import com.jonas.project.garagefix.entity.repair.*;
 
-import com.jonas.project.garagefix.entity.repair.Repair;
-import com.jonas.project.garagefix.entity.repair.RepairCreator;
-import com.jonas.project.garagefix.entity.repair.RepairDetailsData;
 import com.jonas.project.garagefix.repository.RepairRepository;
 import jakarta.validation.Valid;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -24,12 +20,12 @@ public class RepairController {
     private RepairRepository repository;
 
     @Autowired
-    private RepairCreator creator;
+    private RepairManager repairManager;
 
     @PostMapping
     @Transactional
     public ResponseEntity create(@RequestBody @Valid NewRepairData newRepair, UriComponentsBuilder uriBuilder) {
-       var createdRepairDetails = creator.create(newRepair);
+       var createdRepairDetails = repairManager.create(newRepair);
         repository.flush();
 
         var uri = uriBuilder.path("/repair/{id}").buildAndExpand(createdRepairDetails.id()).toUri();
@@ -41,6 +37,15 @@ public class RepairController {
     public ResponseEntity<Page<RepairDetailsData>> list(Pageable pageable) {
         var page = repository.findAllByIsActiveTrue(pageable).map(RepairDetailsData::new);
         return ResponseEntity.ok(page);
+    }
+
+    @PutMapping
+    @Transactional
+    public ResponseEntity update(@RequestBody @Valid UpdateRepairData data) {
+        var updatedRepairDetails = repairManager.update(data);
+        repository.flush();
+
+        return ResponseEntity.ok(updatedRepairDetails);
     }
 
 

@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class RepairCreator {
+public class RepairManager {
 
     @Autowired
     private ClientRepository clientRepository;
@@ -24,6 +24,28 @@ public class RepairCreator {
         var repair = new Repair(null, client, data.productKind(), data.problemDescription(), data.price(), true, null);
         repairRepository.save(repair);
         repairRepository.flush();
+
+        return new RepairDetailsData(repair);
+    }
+
+    public RepairDetailsData update(UpdateRepairData data) {
+        var repair = repairRepository.getReferenceById(data.id());
+
+        if (data.clientId() != null) {
+            repair.setClient(clientRepository.getReferenceById(data.clientId()));
+        }
+
+        if (data.productKind() != null) {
+            repair.setProductKind(data.productKind());
+        }
+
+        if (data.problemDescription() != null) {
+            repair.setProblemDescription(data.problemDescription());
+        }
+
+        if (data.price() != null) {
+            repair.setPrice(data.price());
+        }
 
         return new RepairDetailsData(repair);
     }
