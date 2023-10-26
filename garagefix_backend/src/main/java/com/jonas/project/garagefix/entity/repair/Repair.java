@@ -34,4 +34,8 @@ public class Repair {
 
     @CreationTimestamp
     private LocalDateTime createdAt;
+
+    public void delete() {
+        this.isActive = false;
+    }
 }
