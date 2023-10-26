@@ -43,4 +43,8 @@ public class Client {
             this.phoneNumber = data.phoneNumber();
         }
     }
+
+    public void delete() {
+        this.isActive = false;
+    }
 }

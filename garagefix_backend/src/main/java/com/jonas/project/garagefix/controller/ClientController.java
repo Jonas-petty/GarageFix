@@ -51,4 +51,14 @@ public class ClientController {
 
         return ResponseEntity.ok(new ClientDetailsData(client));
     }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity delete(@PathVariable UUID id) {
+        var client = repository.getReferenceById(id);
+
+        client.delete();
+
+        return ResponseEntity.ok().body("Usuário " + client.getName() + " foi deletado com sucesso");
+    }
 }
