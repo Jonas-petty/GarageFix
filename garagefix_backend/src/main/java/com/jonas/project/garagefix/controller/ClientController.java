@@ -43,6 +43,16 @@ public class ClientController {
         return ResponseEntity.ok(page);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity searchClient(@PathVariable UUID id) {
+        if (!repository.existsById(id)) {
+            return ResponseEntity.ok().build();
+        } else {
+            var client = repository.getReferenceById(id);
+            return ResponseEntity.ok(new ClientDetailsData(client));
+        }
+    }
+
     @PutMapping
     @Transactional
     public ResponseEntity update(@RequestBody @Valid ClientUpdateData data) {
