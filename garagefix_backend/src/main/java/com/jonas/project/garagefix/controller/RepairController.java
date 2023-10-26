@@ -1,5 +1,6 @@
 package com.jonas.project.garagefix.controller;
 
+import com.jonas.project.garagefix.entity.client.ClientDetailsData;
 import com.jonas.project.garagefix.entity.repair.*;
 
 import com.jonas.project.garagefix.repository.RepairRepository;
@@ -41,6 +42,16 @@ public class RepairController {
     public ResponseEntity<Page<RepairDetailsData>> list(Pageable pageable) {
         var page = repository.findAllByIsActiveTrue(pageable).map(RepairDetailsData::new);
         return ResponseEntity.ok(page);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity searchClient(@PathVariable UUID id) {
+        if (!repository.existsById(id)) {
+            return ResponseEntity.ok().build();
+        } else {
+            var repair = repository.getReferenceById(id);
+            return ResponseEntity.ok(new RepairDetailsData(repair));
+        }
     }
 
     @PutMapping
