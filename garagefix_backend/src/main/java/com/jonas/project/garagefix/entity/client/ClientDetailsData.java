@@ -5,7 +5,7 @@ import java.util.UUID;
 
 public record ClientDetailsData(
         UUID id,
-        String nome,
+        String name,
         String phoneNumber,
         LocalDateTime createdAt
 ) {
