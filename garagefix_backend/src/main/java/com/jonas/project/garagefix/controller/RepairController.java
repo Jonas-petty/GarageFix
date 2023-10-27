@@ -5,6 +5,7 @@ import com.jonas.project.garagefix.entity.repair.*;
 
 import com.jonas.project.garagefix.repository.RepairRepository;
 import jakarta.validation.Valid;
+import jakarta.websocket.server.PathParam;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -45,13 +46,19 @@ public class RepairController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity searchClient(@PathVariable UUID id) {
+    public ResponseEntity searchRepair(@PathVariable UUID id) {
         if (!repository.existsById(id)) {
             return ResponseEntity.ok().build();
         } else {
             var repair = repository.getReferenceById(id);
             return ResponseEntity.ok(new RepairDetailsData(repair));
         }
+    }
+
+    @GetMapping("/client/{id}")
+    public ResponseEntity<Page<RepairDetailsData>> searchClientRepairs(@PathVariable UUID id, Pageable pageable) {
+        var page = repository.findAllByClientId(id, pageable).map(RepairDetailsData::new);
+        return ResponseEntity.ok(page);
     }
 
     @PutMapping
