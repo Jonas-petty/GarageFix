@@ -1,35 +1,23 @@
-// import { useState } from 'react'
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
-import { useEffect, useState } from 'react'
-import './App.css'
+// import './App.css'
+// import RepairTable from './components/Table/RepairTable'
+// import { useEffect, useState } from 'react'
+import { BrowserRouter as Router } from 'react-router-dom'
+
+import MainRoutes from './routes'
+import { GlobalStyle } from './styles'
 
 function App() {
 
-  const [clients, setClients] = useState([])
-
-  useEffect(() => {
-    fetch("http://localhost:8080/client")
-    .then(response => {return response.json()})
-    .then(data => {setClients(data.content)})
-    
-  }, [])
-
-  const clientElements = clients.map((client) => {
-    console.log(client)
-
-    return <div key={client.id}>
-      <p>Nome: {client.nome}</p>
-      <p>Telefone: {client.phoneNumber}</p>
-    </div>
-  })
+  // const [data, setData] = useState([])
 
   return (
     <>
-      <div>
-        {clientElements}
-      </div>
-    
+    <Router>
+      <GlobalStyle />
+      <MainRoutes />
+    </Router>
     </>
   )
 }
