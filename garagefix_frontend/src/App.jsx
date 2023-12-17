@@ -4,19 +4,16 @@
 // import RepairTable from './components/Table/RepairTable'
 // import { useEffect, useState } from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
-
-import MainRoutes from './routes'
 import { GlobalStyle } from './styles'
+import Home from './pages/Home'
 
 function App() {
-
-  // const [data, setData] = useState([])
 
   return (
     <>
     <Router>
       <GlobalStyle />
-      <MainRoutes />
+      <Home />
     </Router>
     </>
   )

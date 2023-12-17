@@ -27,10 +27,10 @@ const GlobalStyle = createGlobalStyle`
     text-decoration: none;
     font-size: 1.2rem;
 
-    ${props => props.primary && css`
+    /* ${props => props.primary && css`
       background-color: #C03221;
       color: #F7F7FF;
-    `}
+    `} */
   `
 
 export { GlobalStyle, LinkButton }
