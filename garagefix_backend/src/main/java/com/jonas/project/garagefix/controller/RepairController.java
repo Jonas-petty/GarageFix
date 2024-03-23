@@ -16,7 +16,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("/repair")
@@ -80,5 +83,12 @@ public class RepairController {
         return ResponseEntity.ok().body("Repair " + repair.getId() + " successfully deleted");
     }
 
+    @GetMapping("/product_types")
+    public ResponseEntity listProductTypes() {
+        List<String> productTypes = Stream.of(ProductKind.values())
+                                                        .map(ProductKind::name)
+                                                        .toList();
 
+        return ResponseEntity.ok(productTypes);
+    }
 }
